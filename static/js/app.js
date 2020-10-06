@@ -29,6 +29,21 @@ function findPlots(id) {
         };
     // data variable
         var data = [trace1];
+
+    //  layout variable for plotting layout
+        var layout = {
+            title: 'Top Ten OTU'
+            yaxis:{ tickmode:'linear',},
+            margin:{
+                top: 100,
+                right: 100,
+                bottom: 30,
+                left: 100
+            }
+        };
+
+    // call function for bar chart
+    Plotly.newPlot('bar', data, layout);
     })
 
 
