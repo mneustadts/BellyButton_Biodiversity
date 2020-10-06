@@ -15,6 +15,20 @@ function findPlots(id) {
     // get the correct form of otu ids to plot
         var otuID = otuTopTen.map(d => 'OTU' + d);
         console.log(`OTU IDS: ${otuID}`)
+    
+    // top ten labels for the chart
+        var labels = sampledata.samples[0]otuLabels.slice(0,10);
+        console.log(`OTU_labels: ${labels}`)
+        var trace1 = {
+            x: sampleValues,
+            y: otuID,
+            text: labels,
+            marker: { color: 'cyan'},
+            type: 'bar',
+            oreintation: 'h',
+        };
+    // data variable
+        var data = [trace1];
     })
 
 
