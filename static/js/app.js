@@ -1,6 +1,6 @@
 function findPlots(id) {
     // read samples.json
-    d3.json('samples.json').then ( sampledata =>{
+    d3.json('../samples.json').then((sampledata) =>{
         console.log(sampledata)
         var ids = sampledata.samples[0].otu_ids;
         console.log(ids)
@@ -13,28 +13,29 @@ function findPlots(id) {
         var otuTopTen = (sampledata.samples[0].otu_ids.slice(0,10)).reverse();
     
     // get the correct form of otu ids to plot
-        var otuID = otuTopTen.map(d => 'OTU' + d);
-        console.log(`OTU IDS: ${otuID}`)
+        var OTU_id = otuTopTen.map(d => 'OTU' + d);
+        console.log(`OTU IDS: ${OTU_id}`)
     
     // top ten labels for the chart
         var labels = sampledata.samples[0].otu_labels.slice(0,10);
         console.log(`OTU_labels: ${labels}`)
-        var trace1 = {
+        var barTrace = {
             x: sampleValues,
-            y: otuID,
+            y: OTU_id,
             text: labels,
             marker: { color: 'cyan'},
             type: 'bar',
             oreintation: 'h',
         };
     // data variable
-        var data = [trace1];
+        var data = [barTrace];
 
     //  layout variable for plotting layout
         var layout = {
-            title: 'Top Ten OTU'
-            yaxis:{ title, "linear"},
-
+            title: 'Top Ten OTU',
+            yaxis:{
+                tickmode:"linear",
+            },
             margin:{
                 top: 100,
                 right: 100,
