@@ -44,7 +44,7 @@ function findPlots(id) {
             }
         };
 
-    // create bar chart
+    // create bar chart plot
     Plotly.newPlot('bar', data, barLayout);
 
     // create variable for bubble trace
@@ -58,8 +58,21 @@ function findPlots(id) {
         },
         text: sampledata.otu_labels
     };
+
     // create layout for bubble chart
-    var bubbleLayout
+    var bubbleLayout ={
+        xaxis:{title: 'OTU ID'},
+        height: 600,
+        width: 1000
+    };
+
+    //bubble data variable and plot
+    var bubbleData = [bubbleTrace];
+
+    Plotly.newPlot('bubble', bubbleData, bubbleLayout)
+
+    //function for necessary data
+    function findInfo(id){}
     })
 
 
