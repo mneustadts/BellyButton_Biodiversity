@@ -1,6 +1,6 @@
 function findPlots(id) {
     // read samples.json
-    d3.json('../samples.json').then((sampledata) =>{
+    d3.json('samples.json').then(sampledata =>{
         console.log(sampledata)
         var ids = sampledata.samples[0].otu_ids;
         console.log(ids)
@@ -31,7 +31,7 @@ function findPlots(id) {
         var data = [barTrace];
 
     //  layout variable for plotting layout
-        var layout = {
+        var barLayout = {
             title: 'Top Ten OTU',
             yaxis:{
                 tickmode:"linear",
@@ -44,8 +44,22 @@ function findPlots(id) {
             }
         };
 
-    // call function for bar chart
-    Plotly.newPlot('bar', data, layout);
+    // create bar chart
+    Plotly.newPlot('bar', data, barLayout);
+
+    // create variable for bubble trace
+    var bubbleTrace ={
+        x: sampledata.otu_ids,
+        y: sampledata.sample_values,
+        mode: 'markers',
+        marker:{
+            size: sampledata.sample_values,
+            color: sampledata.otu_ids
+        },
+        text: sampledata.otu_labels
+    };
+    // create layout for bubble chart
+    var bubbleLayout
     })
 
 
