@@ -1,6 +1,6 @@
 function findPlots(id) {
     // read samples.json
-    d3.json('samples.json').then((sampledata) =>{
+    d3.json('../data/samples.json').then(sampledata =>{
         console.log(sampledata)
         
         var sampleValues = sampledata.samples[0].sample_values.slice(0,10).reverse();
@@ -73,7 +73,7 @@ function findPlots(id) {
 }
     //function for necessary data
     function findInfo(id){
-    d3.json("samples.json").then((sampledata)=> {
+    d3.json("../data/samples.json").then((sampledata)=> {
         
     // get the metadata info for the demographic panel
         var metadata = sampledata.metadata;
@@ -95,7 +95,7 @@ function findPlots(id) {
 
 // create the function for the change event
 function optionChanged(id) {
-    findPlot(id);
+    findPlots(id);
     findInfo(id);
 }
 
@@ -104,16 +104,15 @@ function init() {
     var dropdown = d3.select("#selDataset");
 
     // read the data 
-    d3.json("samples.json").then((sampledata)=> {
-        console.log(data)
+    d3.json("../data/samples.json").then((sampledata)=> {
 
     // get the id data to the dropdwown menu
-        data.names.forEach(function(name) {
+        sampledata.names.forEach(function(name) {
             dropdown.append("option").text(name).property("value");
         });
 
     // call the functions to display plots on page
-        findPlot(sampledata.names[0]);
+        findPlots(sampledata.names[0]);
         findInfo(sampledata.names[0]);
     });
 }
